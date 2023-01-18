@@ -7,6 +7,27 @@ const servicio1 = 100
 const servicio2 = 200
 const servicio3 = 300
 
+const servicios = [
+    {
+        id: 1,
+        nombre: "Copywriting",
+        precio: 100,
+        descripcion: "escribiremos 5 paginas de productos"
+    },
+    {
+        id: 2,
+        nombre: "Ad creatives",
+        precio: 200,
+        descripcion: "recibiras 10 imagenes para utilizar en tus anuncios"
+    },
+    {
+        id: 3,
+        nombre: "SEO",
+        precio: 300,
+        descripcion: "Auditaremos tu sitio y propondremos mejoras en SEO"
+    }
+]
+
 //Valores default de las variables de precio
 let serv1 = ""
 let serv2 = ""
@@ -27,7 +48,7 @@ saludar()
 while (serv1 !== "y" && serv1 !== "n"){
     serv1 = prompt("Desea adquirir el servicio 1 por un valor de $"+ servicio1 +"? [y/n]").toLowerCase()
     console.log("serv1: "+ serv1)
- }
+}
 while (serv2 !== "y" && serv2 !== "n"){
     serv2 = prompt("Desea adquirir el servicio 2 por un valor de $"+ servicio2 +"? [y/n]").toLowerCase()
     console.log("serv2: "+ serv2)
