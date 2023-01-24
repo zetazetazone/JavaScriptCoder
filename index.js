@@ -33,3 +33,5 @@ let servicioUsuario
 while (!servicioUsuario || servicioUsuario > 3 || servicioUsuario < 0){
     servicioUsuario = Math.trunc(parseInt(prompt(servicios.map((servicio, i) => i+1 + ") " + servicio.nombre + ". $"+ servicio.precio ).join('\n'))))
 }
+
+alert("Usted eligió el servicio número: ("+ servicioUsuario + ") por el valor de : $"+ servicios[servicioUsuario - 1].precio)
