@@ -8,8 +8,8 @@
 
 document.getElementById('myButton').onclick = function(){
 
-    var myName = document.getElementById('myText').value;
-    console.log(myName)
+    var userName = document.getElementById('myText').value;
+    console.log(userName)
 }
 
 
