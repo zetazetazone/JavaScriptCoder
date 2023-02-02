@@ -9,6 +9,7 @@
 document.getElementById('myButton').onclick = function(){
 
     var userName = document.getElementById('myText').value;
+    localStorage.setItem('username', userName)
     console.log(userName)
 }
 
