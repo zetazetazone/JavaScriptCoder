@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    
+    <div class="bg">
     <div class="container">
         <header class="d-flex justify-content-center py-3">
         <ul class="nav nav-pills">
@@ -20,7 +20,10 @@
         </header>
     </div>
 
-    <div class="px-4 py-5 m0 text-center" id="bg">
+    <div class="px-4 py-5 m0 text-center" style="display: flex;
+    flex-direction: column;
+    height: calc(100vh - 71.962px);
+    justify-content: center;" >
         <img class="d-block mx-auto mb-4" src="./Assets/Teemo Mushroom.jpg" alt="" width="72" height="57">
         <h1 class="display-5 fw-bold">Ganaste o Perdiste</h1>
         <div class="col-lg-6 mx-auto">
@@ -32,6 +35,7 @@
             </div>
         </div>
         </div>
+    </div>
     </div>
 
     <script src="index.js"></script>

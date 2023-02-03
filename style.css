@@ -1,12 +1,22 @@
-#bg{
-	content: '';
+.bg{
 	position: relative;
 	width: auto;
-	height: calc(100vh - 71.962px);
+	height: calc(100vh);
 	left: 0;
 	top: 0;
-	background-image: url("./Assets/horace-hsu-neon-vex-f.jpg");
+	background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url("./Assets/horace-hsu-neon-vex-f.jpg");
 	background-size: cover;
 	filter: blur(0px);
 	z-index: -15;
+	background-position: center;
+}
+
+.display-5{
+	color: white;
+	text-shadow: 2px 2px 4px #000000;
+}
+
+.col-lg-6{
+	color: white;
+	text-shadow: 2px 2px 4px #000000;
 }
