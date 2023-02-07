@@ -10,7 +10,7 @@ let summonerName
 let summonerData
 let summonerInfo
 
-document.getElementById('myButton').onclick = function(){
+document.getElementById('myButton').onclick = function (){
 
     summonerName = document.getElementById('myText').value;
     localStorage.setItem('username', summonerName)
@@ -23,11 +23,18 @@ document.getElementById('myButton').onclick = function(){
     getLeagueData().then(result => {
         summonerInfo = result
         console.log(summonerInfo);
-        console.log(summonerInfo[0].tier)
+        if(summonerInfo[0].queueType == 'RANKED_SOLO_5x5'){
+            console.log(summonerInfo[0].tier)
+        }
     });
 }
+document.getElementById('myText').addEventListener('keypress', function(event){
+    if (event.key === 'Enter') {
+        document.getElementById("myButton").click();
+    }
+});
 
-const API_KEY = 'RGAPI-f3f87a02-df2e-4936-973e-60cfc3fb1783';
+const API_KEY = 'RGAPI-6b24af6d-6fae-4772-9b68-44b9f151d80b';
 const API_END_POINT = 'https://la2.api.riotgames.com/lol/summoner/v4/summoners/by-name/';
 const LEAGUE_END_POINT = 'https://la2.api.riotgames.com/lol/league/v4/entries/by-summoner/';
 
