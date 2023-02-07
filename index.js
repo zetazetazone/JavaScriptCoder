@@ -7,30 +7,32 @@
 // Algoritmo para visualizar el rango alcanzado por el usuario en Clasificatorio Solo/Duo, tras ingresar manualmente el display name, asumiendo que corresponde al servidor LA2, consumiendo la API de Riot.
 
 let summonerName
-const IMAGE_MAPPINGS = {}
 
+const search = document.getElementById('busqueda')
+const lastUsername = localStorage.getItem('username')
+if(lastUsername){
+    search.innerHTML = `Ultima busqueda: ${lastUsername}`
+}
 
 document.getElementById('myButton').onclick = async function (){
 
     summonerName = document.getElementById('myText').value;
     localStorage.setItem('username', summonerName)
     console.log(summonerName)
-
     const summonerData = await getSummonerData()
         console.log(summonerData)
     const leagueData = await getLeagueData(summonerData)
-        
         console.log(leagueData);
-        const yourTier = leagueData.find(data => data.queueType === 'RANKED_SOLO_5x5')
+    const yourTier = leagueData.find(data => data.queueType === 'RANKED_SOLO_5x5')
         console.log(yourTier.tier)
-        const myModalAlternative = new bootstrap.Modal('#myModal', {})
-        const image = document.querySelector('#tierImage')
-        image.src = `./Assets/ranked-emblem/emblem-${yourTier.tier.toLowerCase()}.png`
-        const tittle = document.querySelector('#exampleModalLabel')
-        tittle.innerHTML = `Rango: ${yourTier.tier}`
-        myModalAlternative.show()
-
+    const myModalAlternative = new bootstrap.Modal('#myModal', {})
+    const image = document.querySelector('#tierImage')
+    image.src = `./Assets/ranked-emblem/emblem-${yourTier.tier.toLowerCase()}.png`
+    const tittle = document.querySelector('#exampleModalLabel')
+    tittle.innerHTML = `Rango: ${yourTier.tier}`
+    myModalAlternative.show()
 }
+
 document.getElementById('myText').addEventListener('keypress', function(event){
     if (event.key === 'Enter') {
         document.getElementById("myButton").click();
