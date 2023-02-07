@@ -4,29 +4,32 @@
     Pre Entrega 3 Borzone
 */
 
-// Algoritmo para visualizar si el usuario gano o perdio la ultima partida jugada de lol tras ingresar manualmente el display name, asumiendo que corresponde al servidor LA2, consumiendo la API de Riot.
+// Algoritmo para visualizar el rango alcanzado por el usuario en Clasificatorio Solo/Duo, tras ingresar manualmente el display name, asumiendo que corresponde al servidor LA2, consumiendo la API de Riot.
 
 let summonerName
-let summonerData
-let summonerInfo
+const IMAGE_MAPPINGS = {}
 
-document.getElementById('myButton').onclick = function (){
+
+document.getElementById('myButton').onclick = async function (){
 
     summonerName = document.getElementById('myText').value;
     localStorage.setItem('username', summonerName)
     console.log(summonerName)
 
-    getSummonerData().then(result => {
-        summonerData = result
-        console.log(summonerData);
-    });
-    getLeagueData().then(result => {
-        summonerInfo = result
-        console.log(summonerInfo);
-        if(summonerInfo[0].queueType == 'RANKED_SOLO_5x5'){
-            console.log(summonerInfo[0].tier)
-        }
-    });
+    const summonerData = await getSummonerData()
+        console.log(summonerData)
+    const leagueData = await getLeagueData(summonerData)
+        
+        console.log(leagueData);
+        const yourTier = leagueData.find(data => data.queueType === 'RANKED_SOLO_5x5')
+        console.log(yourTier.tier)
+        const myModalAlternative = new bootstrap.Modal('#myModal', {})
+        const image = document.querySelector('#tierImage')
+        image.src = `./Assets/ranked-emblem/emblem-${yourTier.tier.toLowerCase()}.png`
+        const tittle = document.querySelector('#exampleModalLabel')
+        tittle.innerHTML = `Rango: ${yourTier.tier}`
+        myModalAlternative.show()
+
 }
 document.getElementById('myText').addEventListener('keypress', function(event){
     if (event.key === 'Enter') {
@@ -48,7 +51,7 @@ async function getSummonerData() {
     }
 }
 
-async function getLeagueData() {
+async function getLeagueData(summonerData) {
     try {
     const response = await fetch(LEAGUE_END_POINT + summonerData.id + '?api_key=' + API_KEY);
     const data = await response.json();
