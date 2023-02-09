@@ -40,7 +40,7 @@ document.getElementById('myText').addEventListener('keypress', function(event){
 });
 
 // La API KEY expira cada 24 horas!
-const API_KEY = 'RGAPI-c45d8157-e301-4b6f-8474-36277cdca8b3';
+const API_KEY = 'RGAPI-bcc50d00-b43d-4fc2-a854-492d55d45b5c';
 const API_END_POINT = 'https://la2.api.riotgames.com/lol/summoner/v4/summoners/by-name/';
 const LEAGUE_END_POINT = 'https://la2.api.riotgames.com/lol/league/v4/entries/by-summoner/';
 
