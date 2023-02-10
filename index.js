@@ -40,7 +40,7 @@ document.getElementById('myText').addEventListener('keypress', function(event){
 });
 
 // La API KEY expira cada 24 horas!
-const API_KEY = 'RGAPI-2fe54ce3-36c5-4d82-a21a-4e9b4f69695f';
+const API_KEY = 'RGAPI-24048437-dafc-4d89-ba51-6a8dba0aa9c3';
 const API_END_POINT = 'https://la2.api.riotgames.com/lol/summoner/v4/summoners/by-name/';
 const LEAGUE_END_POINT = 'https://la2.api.riotgames.com/lol/league/v4/entries/by-summoner/';
 
@@ -63,3 +63,11 @@ async function getLeagueData(summonerData) {
     console.error('There was a problem with the fetch operation:', error);
     }
 }
+
+lista = [1,2,3,4,5,6,7,8,9,10]
+
+function getRandomElement(lista) {
+    var randomIndex = Math.floor(Math.random() * lista.length);
+    return lista[randomIndex];
+}
+console.log(getRandomElement(lista))
