@@ -8,8 +8,8 @@
 
 let summonerName
 
-const search = document.getElementById('busqueda')
-const lastUsername = localStorage.getItem('username')
+let search = document.getElementById('busqueda')
+let lastUsername = localStorage.getItem('username')
 if(lastUsername){
     search.innerHTML = `Ultima busqueda: ${lastUsername}`
 }
@@ -29,8 +29,9 @@ document.getElementById('myButton').onclick = async function (){
     const image = document.querySelector('#tierImage')
     image.src = `./Assets/ranked-emblem/emblem-${yourTier.tier.toLowerCase()}.png`
     const tittle = document.querySelector('#exampleModalLabel')
-    tittle.innerHTML = `Rango: ${yourTier.tier}`
+    tittle.innerHTML = `Rango: ${yourTier.tier} ${yourTier.rank}`
     myModalAlternative.show()
+    search.innerHTML = `Ultima busqueda: ${summonerName}`
 }
 
 document.getElementById('myText').addEventListener('keypress', function(event){
@@ -67,20 +68,21 @@ async function getLeagueData(summonerData) {
 
 
 
-const tiers = ['IRON','BRONZE','SILVER','GOLD','PLATINUM','DIAMOND']
-const division = ['I','II','III','IV']
+let tiers = ['IRON','BRONZE','SILVER','GOLD','PLATINUM','DIAMOND']
+let division = ['I','II','III','IV']
 let randUser = []
 
 
-function getRandomElements(tiers, division) {
-    const randomIndex1 = Math.floor(Math.random() * tiers.length);
-    const randomIndex2 = Math.floor(Math.random() * division.length);
-    return [tiers[randomIndex1], division[randomIndex2]];
-}
-// destructuring del elemento tier y elemento division en un array
-const [randomTier, randomDivision] = getRandomElements(tiers, division);
+
 
 document.getElementById('randBtn').onclick = async function getRandomUser() {
+    function getRandomElements(tiers, division) {
+        let randomIndex1 = Math.floor(Math.random() * tiers.length);
+        let randomIndex2 = Math.floor(Math.random() * division.length);
+        return [tiers[randomIndex1], division[randomIndex2]];
+    }
+    // destructuring del elemento tier y elemento division en un array
+    let [randomTier, randomDivision] = getRandomElements(tiers, division);
     try {
     const response = await fetch(RANDOM_END_POINT + randomTier + '/' + randomDivision + '?page=1&api_key=' + API_KEY);
     let data = await response.json();

@@ -27,3 +27,16 @@
 .sacar .btn-close{
 	margin: 0;
 }
+
+.btn {
+	background-color: #002d18;
+	border-color: #8bff00;
+}
+
+.btn:hover{
+	background-color: #8bff00;
+	border-color: #002d18;
+	color: #000000;
+}
+
+
