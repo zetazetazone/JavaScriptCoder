@@ -4,7 +4,7 @@
     Pre Entrega 3 Borzone
 */
 
-// Algoritmo para visualizar el rango alcanzado por el usuario en Clasificatorio Solo/Duo, tras ingresar manualmente el display name, asumiendo que corresponde al servidor LA2, consumiendo la API de Riot.
+// Algoritmo para visualizar el rango alcanzado por el usuario en Clasificatorio Solo/Duo de League Of Legends, tras ingresar manualmente el display name, asumiendo que corresponde al servidor LA2, consumiendo la API de Riot.
 
 let summonerName
 
@@ -43,6 +43,7 @@ document.getElementById('myText').addEventListener('keypress', function(event){
 const API_KEY = 'RGAPI-24048437-dafc-4d89-ba51-6a8dba0aa9c3';
 const API_END_POINT = 'https://la2.api.riotgames.com/lol/summoner/v4/summoners/by-name/';
 const LEAGUE_END_POINT = 'https://la2.api.riotgames.com/lol/league/v4/entries/by-summoner/';
+const RANDOM_END_POINT = 'https://la2.api.riotgames.com/lol/league/v4/entries/RANKED_SOLO_5x5/'
 
 async function getSummonerData() {
     try {
@@ -64,10 +65,31 @@ async function getLeagueData(summonerData) {
     }
 }
 
-lista = [1,2,3,4,5,6,7,8,9,10]
 
-function getRandomElement(lista) {
-    var randomIndex = Math.floor(Math.random() * lista.length);
-    return lista[randomIndex];
+
+const tiers = ['IRON','BRONZE','SILVER','GOLD','PLATINUM','DIAMOND']
+const division = ['I','II','III','IV']
+let randUser = []
+
+
+function getRandomElements(tiers, division) {
+    const randomIndex1 = Math.floor(Math.random() * tiers.length);
+    const randomIndex2 = Math.floor(Math.random() * division.length);
+    return [tiers[randomIndex1], division[randomIndex2]];
 }
-console.log(getRandomElement(lista))
+// destructuring del elemento tier y elemento division en un array
+const [randomTier, randomDivision] = getRandomElements(tiers, division);
+
+document.getElementById('randBtn').onclick = async function getRandomUser() {
+    try {
+    const response = await fetch(RANDOM_END_POINT + randomTier + '/' + randomDivision + '?page=1&api_key=' + API_KEY);
+    let data = await response.json();
+    const randomIndex = Math.floor(Math.random() * data.length);
+    randUser = data[randomIndex].summonerName
+    document.getElementById('myText').value = randUser
+    console.log(randUser)
+    return data;
+    } catch (error) {
+    console.error('There was a problem with the fetch operation:', error);
+    }
+}
